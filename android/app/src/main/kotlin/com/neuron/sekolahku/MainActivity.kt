@@ -1,4 +1,4 @@
-package com.example.sekolahku
+package com.neuron.sekolahku
 
 import io.flutter.embedding.android.FlutterActivity
 
