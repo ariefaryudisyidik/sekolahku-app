@@ -20,7 +20,7 @@ class StudentList extends StatelessWidget {
                 children: [
                   const SizedBox(height: 64, width: 16),
                   CircleAvatar(
-                    backgroundImage: NetworkImage(student.photo),
+                    backgroundImage: AssetImage(student.photo),
                   ),
                   const SizedBox(width: 16),
                   Expanded(

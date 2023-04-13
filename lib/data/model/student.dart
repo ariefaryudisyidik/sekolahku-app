@@ -31,7 +31,7 @@ var studentList = [
       fullName: 'John Lenon',
       gender: 'Pria',
       degree: 'SMA',
-      photo: 'https://ui-avatars.com/api/?name=John+Doe&size=128',
+      photo: 'assets/images/pria.png',
       address: 'Hollywood'),
   Student(
       id: 2,
@@ -41,7 +41,7 @@ var studentList = [
       fullName: 'Jane Swift',
       gender: 'Wanita',
       degree: 'SMP',
-      photo: 'https://ui-avatars.com/api/?name=Jane+Swift&size=128',
+      photo: 'assets/images/wanita.png',
       address: 'Lampung'),
   Student(
       id: 3,
@@ -51,7 +51,7 @@ var studentList = [
       fullName: 'John Wick',
       gender: 'Pria',
       degree: 'SMA',
-      photo: 'https://ui-avatars.com/api/?name=John+Wick&size=128',
+      photo: 'assets/images/pria.png',
       address: 'Jakarta'),
   Student(
       id: 4,
@@ -61,7 +61,7 @@ var studentList = [
       fullName: 'Siti Halimah',
       gender: 'Wanita',
       degree: 'SMP',
-      photo: 'https://ui-avatars.com/api/?name=Siti+Halimah&size=128',
+      photo: 'assets/images/wanita.png',
       address: 'Bandung'),
   Student(
       id: 5,
@@ -71,7 +71,7 @@ var studentList = [
       fullName: 'Taylor Chen',
       gender: 'Wanita',
       degree: 'SMA',
-      photo: 'https://ui-avatars.com/api/?name=Taylor+Chen&size=128',
+      photo: 'assets/images/wanita.png',
       address: 'Surabaya'),
   Student(
       id: 6,
@@ -81,6 +81,6 @@ var studentList = [
       fullName: 'Brad Pit',
       gender: 'Pria',
       degree: 'SMA',
-      photo: 'https://ui-avatars.com/api/?name=Brad+Pit&size=128',
+      photo: 'assets/images/pria.png',
       address: 'Bali'),
 ];

@@ -14,7 +14,7 @@ class StudentDetail extends StatelessWidget {
           child: Center(
             child: CircleAvatar(
               radius: 64,
-              backgroundImage: NetworkImage(student.photo),
+              backgroundImage: AssetImage(student.photo),
             ),
           ),
         ),
