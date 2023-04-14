@@ -17,7 +17,7 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
 
   String? _gender = 'Pria', _degree;
   bool _reading = false, _writing = false, _drawing = false, _isAdd = true;
-  List degrees = ['SD', 'SMP', 'SMA'];
+  List degrees = ['SD', 'SMP', 'SMA', 'SMK', 'S1'];
 
   @override
   @override
@@ -75,6 +75,7 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
+                  keyboardType: TextInputType.phone,
                   controller: _phoneNumberController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
