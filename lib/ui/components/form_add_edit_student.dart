@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sekolahku/data/local/database/database_provider.dart';
 import 'package:sekolahku/data/model/student.dart';
+import 'package:sekolahku/ui/screens/detail_screen.dart';
+import 'package:sekolahku/ui/screens/home_screen.dart';
 
 class FormAddEditStudent extends StatefulWidget {
   final Student? student;
@@ -15,11 +19,10 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
 
-  String? _gender = 'Pria', _degree;
+  String? _degree, _gender = 'Pria';
   bool _reading = false, _writing = false, _drawing = false, _isAdd = true;
   List degrees = ['SD', 'SMP', 'SMA', 'SMK', 'S1'];
 
-  @override
   @override
   void initState() {
     super.initState();
@@ -32,6 +35,9 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
       _addressController.text = student.address;
       _gender = student.gender;
       _degree = student.degree;
+      _reading = student.hobbies.contains('Membaca');
+      _writing = student.hobbies.contains('Menulis');
+      _drawing = student.hobbies.contains('Menggambar');
     }
   }
 
@@ -42,8 +48,10 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
           title: _isAdd ? const Text('Buat Siswa') : const Text('Edit Siswa'),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
           child: const Icon(Icons.save),
+          onPressed: () async {
+            _isAdd ? _addStudent() : _editStudent();
+          },
         ),
         body: SingleChildScrollView(
             padding: const EdgeInsets.all(8),
@@ -179,5 +187,59 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
                 ),
               ],
             )));
+  }
+
+  _addStudent() {
+    final student = Student(
+        phoneNumber: _phoneNumberController.text,
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        gender: _gender!,
+        degree: _degree!,
+        photo: _gender == 'Pria'
+            ? 'assets/images/pria.png'
+            : 'assets/images/wanita.png',
+        address: _addressController.text,
+        hobbies: [
+          if (_reading) 'Membaca',
+          if (_writing) 'Menulis',
+          if (_drawing) 'Menggambar'
+        ]);
+
+    Provider.of<DatabaseProvider>(context, listen: false)
+        .insertStudent(student);
+
+    Navigator.pop(context);
+  }
+
+  _editStudent() {
+    final student = Student(
+        studentId: widget.student!.studentId,
+        phoneNumber: _phoneNumberController.text,
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        gender: _gender!,
+        degree: _degree!,
+        photo: _gender == 'Pria'
+            ? 'assets/images/pria.png'
+            : 'assets/images/wanita.png',
+        address: _addressController.text,
+        hobbies: [
+          if (_reading) 'Membaca',
+          if (_writing) 'Menulis',
+          if (_drawing) 'Menggambar'
+        ]);
+
+    Provider.of<DatabaseProvider>(context, listen: false)
+        .updateStudent(student);
+
+    Navigator.popUntil(
+        context, (route) => HomeScreen.route == route.settings.name);
+
+    Navigator.pushNamed(
+      context,
+      DetailScreen.route,
+      arguments: student,
+    );
   }
 }

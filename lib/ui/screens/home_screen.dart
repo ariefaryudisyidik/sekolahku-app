@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sekolahku/ui/components/student_list.dart';
+import 'package:sekolahku/ui/screens/form_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const route = '/homeScreen';
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.pushNamed(context, '/formScreen', arguments: null);
+          Navigator.pushNamed(context, FormScreen.route, arguments: null);
         },
       ),
       body: const StudentList(),

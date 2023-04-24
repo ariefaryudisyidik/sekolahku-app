@@ -1,86 +1,49 @@
 class Student {
-  int id;
-  String phoneNumber;
-  String firstName;
-  String lastName;
-  String fullName;
-  String gender;
-  String degree;
-  String photo;
-  String address;
+  late int? studentId;
+  late String phoneNumber;
+  late String firstName;
+  late String lastName;
+  late String gender;
+  late String degree;
+  late String photo;
+  late String address;
+  late List<String> hobbies;
 
   Student({
-    required this.id,
+    this.studentId,
     required this.phoneNumber,
     required this.firstName,
     required this.lastName,
-    required this.fullName,
     required this.gender,
     required this.degree,
     required this.photo,
     required this.address,
+    required this.hobbies,
   });
-}
 
-var studentList = [
-  Student(
-      id: 1,
-      phoneNumber: '234667126',
-      firstName: 'John',
-      lastName: 'Lenon',
-      fullName: 'John Lenon',
-      gender: 'Pria',
-      degree: 'SMA',
-      photo: 'assets/images/pria.png',
-      address: 'Hollywood'),
-  Student(
-      id: 2,
-      phoneNumber: '4234234',
-      firstName: 'Jane',
-      lastName: 'Swift',
-      fullName: 'Jane Swift',
-      gender: 'Wanita',
-      degree: 'SMP',
-      photo: 'assets/images/wanita.png',
-      address: 'Lampung'),
-  Student(
-      id: 3,
-      phoneNumber: '91236778',
-      firstName: 'John',
-      lastName: 'Wick',
-      fullName: 'John Wick',
-      gender: 'Pria',
-      degree: 'SMA',
-      photo: 'assets/images/pria.png',
-      address: 'Jakarta'),
-  Student(
-      id: 4,
-      phoneNumber: '8365632',
-      firstName: 'Siti',
-      lastName: 'Halimah',
-      fullName: 'Siti Halimah',
-      gender: 'Wanita',
-      degree: 'SMP',
-      photo: 'assets/images/wanita.png',
-      address: 'Bandung'),
-  Student(
-      id: 5,
-      phoneNumber: '78556262',
-      firstName: 'Taylor',
-      lastName: 'Chen',
-      fullName: 'Taylor Chen',
-      gender: 'Wanita',
-      degree: 'SMA',
-      photo: 'assets/images/wanita.png',
-      address: 'Surabaya'),
-  Student(
-      id: 6,
-      phoneNumber: '3242372551',
-      firstName: 'Brad',
-      lastName: 'Pit',
-      fullName: 'Brad Pit',
-      gender: 'Pria',
-      degree: 'SMA',
-      photo: 'assets/images/pria.png',
-      address: 'Bali'),
-];
+  Map<String, dynamic> toMap() {
+    return {
+      'studentId': studentId,
+      'phoneNumber': phoneNumber,
+      'firstName': firstName,
+      'lastName': lastName,
+      'gender': gender,
+      'degree': degree,
+      'photo': photo,
+      'address': address,
+      'hobbies': hobbies.join(','),
+    };
+  }
+
+  Student.fromMap(Map<String, dynamic> map) {
+    studentId = map['studentId'];
+    phoneNumber = map['phoneNumber'];
+    firstName = map['firstName'];
+    lastName = map['lastName'];
+    gender = map['gender'];
+    degree = map['degree'];
+    photo = map['photo'];
+    address = map['address'];
+    hobbies = map['hobbies'].toString().split(',');
+  }
+}
