@@ -6,6 +6,8 @@ import 'package:sekolahku/ui/screens/detail_screen.dart';
 import 'package:sekolahku/ui/screens/form_screen.dart';
 import 'package:sekolahku/ui/screens/home_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:sekolahku/ui/screens/login_screen.dart';
+import 'package:sekolahku/ui/screens/register_screen.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +32,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: HomeScreen.route,
+        initialRoute: LoginScreen.route,
         routes: {
+          LoginScreen.route: (context) => const LoginScreen(),
+          RegisterScreen.route: (context) => const RegisterScreen(),
           HomeScreen.route: (context) => const HomeScreen(),
           FormScreen.route: (context) => FormScreen(
               student: ModalRoute.of(context)?.settings.arguments as Student?),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sekolahku/data/local/database/database_helper.dart';
+import 'package:sekolahku/data/model/user.dart';
 import 'package:sekolahku/data/model/student.dart';
 import 'package:sekolahku/utils/state_enum.dart';
 
@@ -17,6 +18,14 @@ class DatabaseProvider extends ChangeNotifier {
     _getAllStudents();
   }
 
+  Future<void> insertUser(User user) async {
+    await _databaseHelper.insertUser(user);
+  }
+
+  Future<User> checkUser(String username, String password) async {
+    return await _databaseHelper.checkUser(username, password);
+  }
+
   Future<void> insertStudent(Student student) async {
     await _databaseHelper.insertStudent(student);
     _getAllStudents();
@@ -25,7 +34,8 @@ class DatabaseProvider extends ChangeNotifier {
   void _getAllStudents() async {
     _studentState = RequestState.Loading;
     _students = await _databaseHelper.getStudents();
-    _studentState = _students.isNotEmpty ? RequestState.Loaded : RequestState.Empty;
+    _studentState =
+        _students.isNotEmpty ? RequestState.Loaded : RequestState.Empty;
     notifyListeners();
   }
 
