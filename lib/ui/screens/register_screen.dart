@@ -19,7 +19,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  bool _obscureText = true;
+  bool _hidePassword = true;
+  bool _hideConfirmPassword = true;
 
   @override
   @override
@@ -57,32 +58,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             const SizedBox(height: 16),
             TextFormField(
-              obscureText: _obscureText,
+              obscureText: _hidePassword,
               controller: _passwordController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 labelText: 'Password',
                 suffixIcon: IconButton(
                   icon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility),
+                      _hidePassword ? Icons.visibility_off : Icons.visibility),
                   onPressed: () => setState(() {
-                    _obscureText = !_obscureText;
+                    _hidePassword = !_hidePassword;
                   }),
                 ),
               ),
             ),
             const SizedBox(height: 16),
             TextFormField(
-              obscureText: _obscureText,
+              obscureText: _hideConfirmPassword,
               controller: _confirmPasswordController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 labelText: 'Confirm Password',
                 suffixIcon: IconButton(
                   icon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility),
+                      _hidePassword ? Icons.visibility_off : Icons.visibility),
                   onPressed: () => setState(() {
-                    _obscureText = !_obscureText;
+                    _hideConfirmPassword = !_hideConfirmPassword;
                   }),
                 ),
               ),
