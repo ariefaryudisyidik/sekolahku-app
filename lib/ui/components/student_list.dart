@@ -39,7 +39,7 @@ class StudentList extends StatelessWidget {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                          flex: 2,
+                          flex: 1,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -53,7 +53,7 @@ class StudentList extends StatelessWidget {
                             ],
                           )),
                       Expanded(
-                          flex: 1,
+                          flex: 0,
                           child: Column(
                             children: [
                               Text(student.degree),
