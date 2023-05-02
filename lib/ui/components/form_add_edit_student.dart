@@ -195,7 +195,7 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
         firstName: _firstNameController.text,
         lastName: _lastNameController.text,
         gender: _gender!,
-        degree: _degree!,
+        degree: _degree == null ? '' : _degree!,
         photo: _gender == 'Pria'
             ? 'assets/images/pria.png'
             : 'assets/images/wanita.png',
@@ -206,14 +206,27 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
           if (_drawing) 'Menggambar'
         ]);
 
-    Provider.of<DatabaseProvider>(context, listen: false)
-        .insertStudent(student);
+    if (student.firstName.isEmpty ||
+        student.lastName.isEmpty ||
+        student.phoneNumber.isEmpty ||
+        student.address.isEmpty ||
+        student.degree.isEmpty ||
+        student.hobbies.isEmpty
+    ) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Mohon lengkapi data')),
+      );
+      return;
+    } else {
+      Provider.of<DatabaseProvider>(context, listen: false)
+          .insertStudent(student);
 
-    Navigator.pop(context);
+      Navigator.pop(context);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Data berhasil ditambahkan')),
-    );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Data berhasil ditambahkan')),
+      );
+    }
   }
 
   _editStudent() {
@@ -234,20 +247,32 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
           if (_drawing) 'Menggambar'
         ]);
 
-    Provider.of<DatabaseProvider>(context, listen: false)
-        .updateStudent(student);
+    if (student.firstName.isEmpty ||
+        student.lastName.isEmpty ||
+        student.phoneNumber.isEmpty ||
+        student.address.isEmpty ||
+        student.hobbies.isEmpty
+    ) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Mohon lengkapi data')),
+      );
+      return;
+    } else {
+      Provider.of<DatabaseProvider>(context, listen: false)
+          .updateStudent(student);
 
-    Navigator.popUntil(
-        context, (route) => HomeScreen.route == route.settings.name);
+      Navigator.popUntil(
+          context, (route) => HomeScreen.route == route.settings.name);
 
-    Navigator.pushNamed(
-      context,
-      DetailScreen.route,
-      arguments: student,
-    );
+      Navigator.pushNamed(
+        context,
+        DetailScreen.route,
+        arguments: student,
+      );
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Data berhasil diubah')),
-    );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Data berhasil diubah')),
+      );
+    }
   }
 }
