@@ -47,6 +47,9 @@ class DetailScreen extends StatelessWidget {
                                     (route) =>
                                         HomeScreen.route == route.settings.name,
                                   );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Data berhasil dihapus')),
+                                  );
                                 },
                                 child: const Text('Ya')),
                             TextButton(

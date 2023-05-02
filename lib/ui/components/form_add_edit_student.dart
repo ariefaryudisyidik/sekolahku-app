@@ -210,6 +210,10 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
         .insertStudent(student);
 
     Navigator.pop(context);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Data berhasil ditambahkan')),
+    );
   }
 
   _editStudent() {
@@ -240,6 +244,10 @@ class FormAddEditStudentState extends State<FormAddEditStudent> {
       context,
       DetailScreen.route,
       arguments: student,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Data berhasil diubah')),
     );
   }
 }
